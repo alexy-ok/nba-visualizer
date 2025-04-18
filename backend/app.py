@@ -10,7 +10,7 @@ CORS(app)
 @app.route('/api/shots', methods=['GET'])
 def get_shots():
     player_id = request.args.get('playerId')
-    season = request.args.get('season', '2023-24')
+    season = request.args.get('season', '2024-25')
 
     # Throttle to avoid rate-limiting
     time.sleep(.2)
@@ -33,7 +33,7 @@ def get_player_id():
     match = players.find_players_by_full_name(name)
     if match:
         print(match)
-        return jsonify({'id': match[0]['id']})
+        return jsonify({'id': match[0]['id'], 'name': match[0]['full_name']})
     return jsonify({'error': 'Player not found'}), 404
 
 
